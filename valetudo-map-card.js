@@ -610,7 +610,7 @@ class ValetudoMapCard extends HTMLElement {
       }
     }
 
-
+  console.dir(mapEntity);
     if (mapEntity && mapEntity['state'] !== 'unavailable' && attributes) {
       if (new Date().getTime() - this.pollInterval > this.lastMapPoll.getTime() || shouldForcePoll) {
 //         this.loadImageAndExtractMapData(attributes["entity_picture"]).then(mapData => {
