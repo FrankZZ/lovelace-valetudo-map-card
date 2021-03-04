@@ -611,14 +611,16 @@ class ValetudoMapCard extends HTMLElement {
     }
 
 
-    if (mapEntity && mapEntity['state'] !== 'unavailable' && attributes && attributes["entity_picture"]) {
+    if (mapEntity && mapEntity['state'] !== 'unavailable' && attributes) {
       if (new Date().getTime() - this.pollInterval > this.lastMapPoll.getTime() || shouldForcePoll) {
-        this.loadImageAndExtractMapData(attributes["entity_picture"]).then(mapData => {
+//         this.loadImageAndExtractMapData(attributes["entity_picture"]).then(mapData => {
+        Promise.resolve(() => {
+          const mapData = attributes;
           if (mapData !== null) {
             this.handleDrawing(hass, mapEntity, mapData);
           }
         }).catch(e => {
-          this.handleDrawing(hass, mapEntity,{});
+          this.handleDrawing(hass, mapEntity, {});
 
           console.warn(e);
         }).finally(() => {
